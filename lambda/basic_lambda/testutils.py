@@ -22,7 +22,7 @@ def get_lambda_client():
 
 def create_lambda_zip(function_name):
     with ZipFile(LAMBDA_ZIP, 'w') as z:
-        z.write(function_name + '.py')
+        z.write(f'{function_name}.py')
 
 
 def create_lambda(function_name):
@@ -34,8 +34,8 @@ def create_lambda(function_name):
         FunctionName=function_name,
         Runtime='python3.6',
         Role='role',
-        Handler=function_name + '.handler',
-        Code=dict(ZipFile=zipped_code)
+        Handler=f'{function_name}.handler',
+        Code=dict(ZipFile=zipped_code),
     )
 
 
